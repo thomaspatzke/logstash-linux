@@ -1,0 +1,6 @@
+[submodule "ext/postfix-grok-patterns"]
+	path = ext/postfix-grok-patterns
+	url = https://github.com/whyscream/postfix-grok-patterns.git
+[submodule "ext/logstash-mail-log"]
+	path = ext/logstash-mail-log
+	url = https://github.com/ajmyyra/logstash-mail-log.git
