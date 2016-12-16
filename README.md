@@ -34,12 +34,16 @@ Default output is a local Elasticsearch instance. Indices are created per log fi
 
 Searches, visualizations and dashboards for Kibana are included for the areas mentioned above:
 
+Authentication Dashboard:
 ![Authentication](/images/Dashboard-Authentication.png)
 
+Failed SSH Authentication Dashboard:
 ![Failed SSH Authentication](/images/Dashboard-Failed_Logins.png)
 
+Mail Dashboard:
 ![Mail](/images/Dashboard-Mail.png)
 
+Web Dashboard:
 ![Web](/images/Dashboard-Web.png)
 
 ## Usage
@@ -75,6 +79,6 @@ Time-field is always `@timestamp`, changing defaults is not required.
 Navigate into the area *Management*, *Saved Objects* and import the JSON files from the `kibana/` directory in following
 order:
 
-1. `searches.json?
+1. `searches.json`
 2. `visualizations.json`
 3. `dashboards.json`
