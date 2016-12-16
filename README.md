@@ -32,7 +32,19 @@ following log files and services:
 
 Default output is a local Elasticsearch instance. Indices are created per log file (apache, auth and mail) and month.
 
+Searches, visualizations and dashboards for Kibana are included for the areas mentioned above:
+
+![Authentication](/images/Dashboard-Authentication.png)
+
+![Failed SSH Authentication](/images/Dashboard-Failed_Logins.png)
+
+![Mail](/images/Dashboard-Mail.png)
+
+![Web](/images/Dashboard-Web.png)
+
 ## Usage
+
+### Logstash Configuration
 
 Clone this repository and initialize the submodules with `git submodule update --init`. Copy or link the directories
 `conf.d`, `patterns.d` and `ext` into `/etc/logstash` or merge their content into your existing directories and restart
@@ -45,3 +57,24 @@ The configuration contains an *import input configuration* (`conf.d/10-import.co
 from the directory `/var/log/import` and keeps the state in separate sincedb filtes. The intention of this config is the
 processing of rotated logs. The logs have to be unpacked before. After the import is finished the content of the import
 directory and the associated sincedb files can be removed.
+
+### Kibana
+
+#### Setting up Indices
+
+Click on the *Add New* button in the area *Management*, *Index Patterns* and create the following patterns:
+
+* `logstash-auth-*`
+* `logstash-mail-*`
+* `logstash-web-*`
+
+Time-field is always `@timestamp`, changing defaults is not required.
+
+#### Importing Searches, Visualizations and Dashboards
+
+Navigate into the area *Management*, *Saved Objects* and import the JSON files from the `kibana/` directory in following
+order:
+
+1. `searches.json?
+2. `visualizations.json`
+3. `dashboards.json`
