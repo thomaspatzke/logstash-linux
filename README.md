@@ -50,6 +50,8 @@ Web Dashboard:
 
 ### Logstash Configuration
 
+#### Initial
+
 Clone this repository and initialize the submodules with `git submodule update --init`. Copy or link the directories
 `conf.d`, `patterns.d` and `ext` into `/etc/logstash` or merge their content into your existing directories and restart
 logstash.
@@ -61,6 +63,13 @@ The configuration contains an *import input configuration* (`conf.d/10-import.co
 from the directory `/var/log/import` and keeps the state in separate sincedb filtes. The intention of this config is the
 processing of rotated logs. The logs have to be unpacked before. After the import is finished the content of the import
 directory and the associated sincedb files can be removed.
+
+#### Updating
+
+This project includes dependency projects as submodules. Updating requires the following steps:
+
+1. git pull
+2. git submodule update
 
 ### Kibana
 
