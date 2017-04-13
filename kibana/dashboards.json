@@ -24,30 +24,6 @@
     }
   },
   {
-    "_id": "Failed-SSH-Authentication",
-    "_type": "dashboard",
-    "_source": {
-      "title": "Failed SSH Authentication",
-      "hits": 0,
-      "description": "",
-      "panelsJSON": "[{\"col\":1,\"id\":\"Auth:-Failed-Usernames\",\"panelIndex\":1,\"row\":1,\"size_x\":3,\"size_y\":5,\"type\":\"visualization\"},{\"col\":4,\"id\":\"SSH-Auth:-Failed-Logins-per-Day\",\"panelIndex\":3,\"row\":1,\"size_x\":9,\"size_y\":5,\"type\":\"visualization\"},{\"col\":1,\"id\":\"SSH-Auth:-Failed-Login-Map\",\"panelIndex\":2,\"row\":6,\"size_x\":8,\"size_y\":9,\"type\":\"visualization\"},{\"id\":\"SSH-Auth:-Cyber-Bullshit-Attribution-Count\",\"type\":\"visualization\",\"panelIndex\":4,\"size_x\":4,\"size_y\":7,\"col\":9,\"row\":6}]",
-      "optionsJSON": "{\"darkTheme\":false}",
-      "uiStateJSON": "{\"P-1\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-2\":{\"mapCenter\":[17.97873309555617,11.25],\"mapZoom\":3}}",
-      "version": 1,
-      "timeRestore": true,
-      "timeTo": "now",
-      "timeFrom": "now-30d",
-      "refreshInterval": {
-        "display": "Off",
-        "pause": false,
-        "value": 0
-      },
-      "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
-      }
-    }
-  },
-  {
     "_id": "Mail",
     "_type": "dashboard",
     "_source": {
@@ -85,6 +61,30 @@
       "timeRestore": true,
       "timeTo": "now",
       "timeFrom": "now-30d/d",
+      "refreshInterval": {
+        "display": "Off",
+        "pause": false,
+        "value": 0
+      },
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Failed-SSH-Authentication",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Failed SSH Authentication",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Auth:-Failed-Usernames\",\"panelIndex\":1,\"row\":1,\"size_x\":3,\"size_y\":5,\"type\":\"visualization\"},{\"col\":7,\"id\":\"SSH-Auth:-Failed-Logins-per-Day\",\"panelIndex\":3,\"row\":1,\"size_x\":6,\"size_y\":5,\"type\":\"visualization\"},{\"col\":1,\"id\":\"SSH-Auth:-Failed-Login-Map\",\"panelIndex\":2,\"row\":6,\"size_x\":8,\"size_y\":9,\"type\":\"visualization\"},{\"id\":\"SSH-Auth:-Cyber-Bullshit-Attribution-Count\",\"type\":\"visualization\",\"panelIndex\":4,\"size_x\":4,\"size_y\":7,\"col\":9,\"row\":6},{\"size_x\":3,\"size_y\":5,\"panelIndex\":5,\"type\":\"visualization\",\"id\":\"4dd3de30-ed86-11e6-860e-05bd6b5fb7ff\",\"col\":4,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-1\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-2\":{\"mapCenter\":[17.97873309555617,11.25],\"mapZoom\":3}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-30d",
       "refreshInterval": {
         "display": "Off",
         "pause": false,
