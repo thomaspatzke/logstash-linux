@@ -353,5 +353,20 @@
         "searchSourceJSON": "{\"filter\":[]}"
       }
     }
+  },
+  {
+    "_id": "9bd13ff0-2158-11e7-8902-ade9e28d9634",
+    "_type": "visualization",
+    "_source": {
+      "title": "SSH Failed Auth: Username/Source Country Heatmap",
+      "visState": "{\"title\":\"SSH Failed Auth: Username/Source Country Heatmap\",\"type\":\"heatmap\",\"params\":{\"addTooltip\":true,\"addLegend\":true,\"enableHover\":false,\"legendPosition\":\"right\",\"times\":[],\"colorsNumber\":10,\"colorSchema\":\"Yellow to Red\",\"setColorRange\":true,\"colorsRange\":[{\"from\":0,\"to\":50},{\"from\":50,\"to\":100},{\"from\":100,\"to\":200},{\"from\":200,\"to\":400},{\"from\":400,\"to\":800},{\"from\":800,\"to\":1600},{\"from\":1600,\"to\":3200},{\"from\":3200,\"to\":6400},{\"from\":6400,\"to\":999999999}],\"invertColors\":false,\"percentageMode\":true,\"valueAxes\":[{\"show\":false,\"id\":\"ValueAxis-1\",\"type\":\"value\",\"scale\":{\"type\":\"log\",\"defaultYExtents\":false},\"labels\":{\"show\":false,\"rotate\":0,\"color\":\"#555\"}}]},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"ssh_user.keyword\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"User\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"geoip.country_name.keyword\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Source Country\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"defaultColors\":{\"0 - 50\":\"rgb(255,255,204)\",\"50 - 100\":\"rgb(255,241,170)\",\"100 - 200\":\"rgb(254,225,135)\",\"200 - 400\":\"rgb(254,201,101)\",\"400 - 800\":\"rgb(254,171,73)\",\"800 - 1600\":\"rgb(253,141,60)\",\"1600 - 3200\":\"rgb(252,91,46)\",\"3200 - 6400\":\"rgb(237,47,34)\",\"6400 - 999999999\":\"rgb(212,16,32)\"}}}",
+      "description": "",
+      "savedSearchId": "SSH-Auth:-Failed",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
   }
 ]
