@@ -1,0 +1,2 @@
+xpack.monitoring.elasticsearch.url: http://elasticsearch:9200
+log.level: warn

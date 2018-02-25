@@ -46,6 +46,9 @@ Mail Dashboard:
 Web Dashboard:
 ![Web](/images/Dashboard-Web.png)
 
+Further, a Docker Compose configuration is included, that sets up an ELK stack configured with the Logstash
+configuration with a log source directory mounted from the host system.
+
 ## Usage
 
 ### Logstash Configuration
@@ -112,3 +115,22 @@ order:
 1. `searches.json`
 2. `visualizations.json`
 3. `dashboards.json`
+
+### Docker
+
+A complete ELK stack with running *logstash-linux* configuration and host-mounted log dropzone can be set up quickly
+with the Docker configurations included in this project by conducting the following steps:
+
+1. Change into directory *docker-elk*
+
+2. Choose your preferred ELK flavor and its corresponding Docker compose file: *docker-compose-elk-with-x-pack.yml* or *docker-compose-elk-oss.yml*.
+2. Run `docker-compose -f docker-compose-elk-foobar.yml build`
+3. Run `docker-compose -f docker-compose-elk-foobar.yml  up`
+
+Drop your log files into the appropriate directory in `log-dropzone/`. They will be picked up automatically by Logstash.
+
+Please be aware that the Docker containers used as base are provided by Elastic and are subject to their terms of use.
+This applies particularly to the X-Pack extensions which have to be licensed properly for production environments.
+
+The logstash-linux Kibana searches, visualizations and dashboards included in this project are not yet included in the containers, but can easily
+imported as desribed above.
