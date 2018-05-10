@@ -1,4 +1,4 @@
-FROM docker.elastic.co/logstash/logstash-oss:6.2.2
+FROM docker.elastic.co/logstash/logstash-oss:6.2.4
 
 COPY docker-elk/logstash-oss.yml /usr/share/logstash/config/logstash.yml
 COPY conf.d /usr/share/logstash/pipeline/
