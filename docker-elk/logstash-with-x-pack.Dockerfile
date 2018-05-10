@@ -1,6 +1,6 @@
 FROM docker.elastic.co/logstash/logstash-x-pack:6.2.2
 
-COPY docker-elk/logstash.yml /usr/share/logstash/config/
+COPY docker-elk/logstash-x-pack.yml /usr/share/logstash/config/logstash.yml
 COPY conf.d /usr/share/logstash/pipeline/
 COPY patterns.d /usr/share/logstash/pipeline/patterns.d
 COPY ext /usr/share/logstash/ext
