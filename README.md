@@ -5,8 +5,8 @@ configuration and patterns provided by other projects in addition to custom crea
 was tested on a [Ubuntu Server](https://www.ubuntu.com/server) 16.04 LTS and includes patterns and configuration for the
 following log files and services:
 
-* Apache access logs (`/var/log/apache2/*-access.log`)
-    * Usage of default Logstash *COMBINEDAPACHELOG* pattern.
+* Httpd combined access logs (`/var/log/apache2/*-access.log`, Apache and nginx)
+    * Usage of default Logstash *HTTPD_COMBINEDLOG* pattern.
     * The *vhost* attribute is aquired from the beginning of the file name until the first -. Example: `patzke.org-access.log` sets *vhost* to `patzke.org`.
     * The filter *geoip* and *useragent* are applied to the corresponding fields.
 * Authentication logs (`/var/log/auth.log`)
@@ -30,7 +30,7 @@ following log files and services:
     * [SpamAssassin spamd](https://github.com/ajmyyra/logstash-mail-log)
     * GeoIP postprocessing of client IPs
 
-Default output is a local Elasticsearch instance. Indices are created per log file (apache, auth and mail) and month.
+Default output is a local Elasticsearch instance. Indices are created per log file (httpd_access, httpd_error, auth and mail) and month.
 
 Searches, visualizations and dashboards for Kibana are included for the areas mentioned above:
 
@@ -73,14 +73,17 @@ The configuration can be changed with environment variables without touching the
 
 Variable                 | Default Value                                               | Description | Configuration File                                                                                                 |
 -------------------------|-------------------------------------------------------------|-------------|--------------------------------------------------------------------------------------------------------------------|
-LL_LOG_APACHE            | /var/log/apache2/*-access.log                               |             | 10-input.conf                                                                                                      |
-LL_SINCEDB_APACHE        | /var/lib/logstash/plugins/inputs/file/apache.sincedb        |             | 10-input.conf                                                                                                      |
+LL_LOG_HTTPD             | /var/log/apache2/*-access.log                               |             | 10-input.conf                                                                                                      |
+LL_SINCEDB_HTTPD_ACCESS  | /var/lib/logstash/plugins/inputs/file/httpd_access.sincedb  |             | 10-input.conf                                                                                                      |
+LL_SINCEDB_HTTPD_ERROR   | /var/lib/logstash/plugins/inputs/file/httpd_error.sincedb   |             | 10-input.conf                                                                                                      |
 LL_LOG_AUTH              | /var/log/auth.log                                           |             | 10-input.conf                                                                                                      |
 LL_SINCEDB_AUTH          | /var/lib/logstash/plugins/inputs/file/auth.sincedb          |             | 10-input.conf                                                                                                      |
 LL_LOG_MAIL              | /var/log/mail.log                                           |             | 10-input.conf                                                                                                      |
 LL_SINCEDB_MAIL          | /var/lib/logstash/plugins/inputs/file/mail.sincedb          |             | 10-input.conf                                                                                                      |
-LL_LOG_IMPORT_APACHE     | /var/log/import/*-access.log.*                              |             | 10-import.conf                                                                                                     |
-LL_SINCEDB_IMPORT_APACHE | /var/lib/logstash/plugins/inputs/file/apache-import.sincedb |             | 10-import.conf                                                                                                     |
+LL_LOG_IMPORT_HTTPD_ACCESS | /var/log/import/*-access.log.*                              |             | 10-import.conf                                                                                                     |
+LL_SINCEDB_IMPORT_HTTPD_ACCESS | /var/lib/logstash/plugins/inputs/file/httpd_access-import.sincedb |             | 10-import.conf                                                                                                     |
+LL_LOG_IMPORT_HTTPD_ERROR | /var/log/import/*-error.log.*                              |             | 10-import.conf                                                                                                     |
+LL_SINCEDB_IMPORT_HTTPD_ERROR | /var/lib/logstash/plugins/inputs/file/httpd_error-import.sincedb |             | 10-import.conf                                                                                                     |
 LL_LOG_IMPORT_AUTH       | /var/log/import/auth.log.*                                  |             | 10-import.conf                                                                                                     |
 LL_SINCEDB_IMPORT_AUTH   | /var/lib/logstash/plugins/inputs/file/auth-import.sincedb   |             | 10-import.conf                                                                                                     |
 LL_LOG_IMPORT_MAIL       | /var/log/import/mail.log.*                                  |             | 10-import.conf                                                                                                     |

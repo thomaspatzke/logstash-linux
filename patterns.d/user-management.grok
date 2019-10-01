@@ -1,15 +1,18 @@
-USERMOD_CHANGE (?<account_action>change) user '%{USER:account_name}' %{WORD:account_attribute}( from '%{DATA:account_from}' to '%{DATA:account_to}')?
-USERMOD_GROUP_MEMBERSHIP (?<account_action>add|delete) '%{USER:account_name}' (?:to|from) %{DATA:account_grouptype} '%{DATA:account_groupname}'
+# Patterns are from the logstash-linux project: https://github.com/thomaspatzke/logstash-linux (GPL-3.0)
+
+USERMOD_CHANGE (?<event.action>change) user '%{USER:user.name}' %{WORD:user.change.attribute}( from '%{DATA:user.change.from}' to '%{DATA:user.change.to}')?
+USERMOD_GROUP_MEMBERSHIP (?<event.action>add|delete) '%{USER:user.name}' (?:to|from) %{DATA:user.change.attribute} '%{DATA:group.name}'
 USERMOD %{USERMOD_CHANGE}|%{USERMOD_GROUP_MEMBERSHIP}
 
-NEW_ACCOUNT new %{DATA:account_type}:\s+%{GREEDYDATA:account_kvdata}
-ACCOUNT_ADD %{NEW_ACCOUNT}|%{USERMOD_GROUP_MEMBERSHIP}
+NEW_USER new user:\s+%{GREEDYDATA:kvdata}
+NEW_GROUP new group:\s+%{GREEDYDATA:kvdata}
+ACCOUNT_ADD %{NEW_USER}|%{NEW_GROUP}|%{USERMOD_GROUP_MEMBERSHIP}
 
-USERDEL_USER (?<account_action>delete) user '%{USER:account_name}'
-USERDEL_GROUP (?<account_action>remove)d %{DATA:account_grouptype} '%{DATA:account_groupname}' owned by '%{DATA:account_groupowner}'
-USERDEL_GROUP_DELUSER (?<account_action>delete) '%{USER:account_name}' from %{DATA:account_grouptype} '%{DATA:account_groupname}'
+USERDEL_USER (?<event.action>delete) user '%{USER:user.name}'
+USERDEL_GROUP (?<event.action>remove)d %{DATA:group.type} '%{DATA:group.name}' owned by '%{DATA:group.owner.name}'
+USERDEL_GROUP_DELUSER (?<event.action>delete) '%{USER:user.name}' from %{DATA:group.type} '%{DATA:group.name}'
 USERDEL %{USERDEL_USER}|%{USERDEL_GROUP}|%{USERDEL_GROUP_DELUSER}
 
-GROUPDEL %{DATA:account_type} '%{USER:account_name}' removed( from %{GREEDYDATA:account_repository})?
+GROUPDEL %{DATA:account.type} '%{USER:user.name}' removed( from %{GREEDYDATA:account.repository})?
 
 # TODO: groupmod, chage, chfn

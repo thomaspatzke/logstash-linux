@@ -1,4 +1,8 @@
-SSH_AUTHFAIL_WRONGUSER Failed %{WORD:ssh_authmethod} for invalid user %{USERNAME:ssh_user} from %{IP:ssh_client_ip} port %{NUMBER:ssh_client_port} (?<ssh_protocol>\w+\d+)
-SSH_AUTHFAIL_WRONGCREDS Failed %{WORD:ssh_authmethod} for %{USERNAME:ssh_user} from %{IP:ssh_client_ip} port %{NUMBER:ssh_client_port} (?<ssh_protocol>\w+\d+)
-SSH_AUTH_SUCCESS Accepted %{WORD:ssh_authmethod} for %{USERNAME:ssh_user} from %{IP:ssh_client_ip} port %{NUMBER:ssh_client_port} (?<ssh_protocol>\w+\d+)(?:: %{WORD:ssh_pubkey_type} %{GREEDYDATA:ssh_pubkey_fingerprint})?
-SSH_DISCONNECT Received disconnect from %{IP:ssh_client_ip} port %{INT:ssh_client_port}.*?:\s+%{GREEDYDATA:ssh_disconnect_reason}
+# Patterns are from the logstash-linux project: https://github.com/thomaspatzke/logstash-linux (GPL-3.0)
+
+SSH_AUTHFAIL_WRONGUSER Failed %{WORD:ssh.authmethod} for invalid user %{USERNAME:user.name} from %{IP:client.ip} port %{NUMBER:client.port} (?<network.protocol>\w+\d+)
+SSH_AUTHFAIL_WRONGCREDS Failed %{WORD:ssh.authmethod} for %{USERNAME:user.name} from %{IP:client.ip} port %{NUMBER:client.port} (?<network.protocol>\w+\d+)
+SSH_AUTH_SUCCESS Accepted %{DATA:ssh.authmethod} for %{USERNAME:user.name} from %{IP:client.ip} port %{NUMBER:client.port} %{WORD:network.protocol}(?:: %{WORD:ssh.pubkey.type} %{GREEDYDATA:ssh.pubkey.fingerprint})?
+SSH_DISCONNECT Received disconnect from %{IP:client.ip} port %{INT:client.port}.*?:\s+%{GREEDYDATA:ssh.disconnect_reason}
+SSH_DISCONNECTED Disconnected from (?:user %{USERNAME:user.name} )?%{IP:client.ip} port %{INT:client.port}
+SSH_CLOSED Connection closed by (?:authenticating user %{USERNAME:user.name} )?%{IP:client.ip} port %{INT:client.port} \[%{GREEDYDATA:ssh.disconnect_reason}\]

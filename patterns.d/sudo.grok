@@ -1,2 +1,4 @@
-SUDO \s*%{USERNAME:sudo_user}\s*:\s*TTY=%{DATA:sudo_tty}\s*;\s*PWD=%{DATA:sudo_pwd}\s*;\s*USER=%{DATA:sudo_targetuser}\s*;\s*COMMAND=%{GREEDYDATA:sudo_command}
-SU \+\s+%{DATA:su_tty}\s+%{USER:su_user}:%{USER:su_targetuser}
+# Patterns are from the logstash-linux project: https://github.com/thomaspatzke/logstash-linux (GPL-3.0)
+
+SUDO \s*%{USERNAME:source.user.name}\s*:\s*TTY=%{DATA:process.tty}\s*;\s*PWD=%{DATA:sudo.pwd}\s*;\s*USER=%{DATA:destination.user.name}\s*;\s*COMMAND=%{GREEDYDATA:sudo.command}
+SU \+\s+%{DATA:process.tty}\s+%{USER:source.user.name}:%{USER:destination.user.name}

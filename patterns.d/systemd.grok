@@ -1,3 +1,4 @@
-SYSTEMD_LOGIND_NEW New session %{INT:systemd_login_sessionid} of user %{USER:systemd_login_user}\.
-SYSTEMD_LOGIND_REMOVED Removed session %{INT:systemd_login_sessionid}\.
-SYSTEMD_LOGIND %{SYSTEMD_LOGIND_NEW}|%{SYSTEMD_LOGIND_REMOVED}
+# Patterns are from the logstash-linux project: https://github.com/thomaspatzke/logstash-linux (GPL-3.0)
+
+SYSTEMD_LOGIND_NEW New session %{INT:session.id} of user %{USER:user.name}\.
+SYSTEMD_LOGIND_REMOVED Removed session %{INT:session.id}\.
